@@ -117,9 +117,9 @@ app.post('/login', async (req, res) => {
     if (result.length > 0) {
         res.redirect('/')
     } else {
-        res.render('wrongaccount')
-        // res.write('khong hop le')
-        // res.end()
+        // res.render('wrongaccount')
+        res.write('Wrong username or password')
+        res.end()
     }
     res.render('index', { 'name': req.session.userName, 'pass': req.session.passWord })
 })
