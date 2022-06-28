@@ -117,9 +117,9 @@ app.post('/login', async (req, res) => {
     if (result.length > 0) {
         res.redirect('/')
     } else {
-        // res.render('wrongaccount')
-        res.write('khong hop le')
-        res.end()
+        res.render('wrongaccount')
+        // res.write('khong hop le')
+        // res.end()
     }
     res.render('index', { 'name': req.session.userName, 'pass': req.session.passWord })
 })
@@ -132,24 +132,10 @@ app.get('/register',(req,res)=>{
 app.post('/registers', async (req, res) => {
     let name = req.body.txtUser
     let pass = req.body.txtPass
-    // let repass = req.body.txtPass
-    // if (name.length <= 2) {
-    //     res.render('register', { 'nameError': 'Name cannot be less than 5 characters!'})
-    //     return
-    // }
     let users = {
         'name': name,
         'pass': pass,
-        // 'pass': repass
     }
-    // let result = await dbo.collection('users').find({ $and: [{ 'name': name, 'pass': pass }] }).toArray()
-    // if (result.length > 0) {
-    //     res.redirect('/registers')
-    // } else {
-    //     // res.render('wrongaccount')
-    //     res.write('khong hop le')
-    //     res.end()
-    // }
     let server = await MongoClient.connect(url)
     let dbo = server.db("ATNToysShop")
     await dbo.collection("users").insertOne(users)
