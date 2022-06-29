@@ -20,27 +20,16 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    {{!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories<span
-                                class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Toys</a></li>
-                            <li><a href="#">Toys</a></li>
-                            <li><a href="#">Toys</a></li>
-                        </ul>
-                    </li> --}}
                     <li><a href="/viewAll"> View Product</a></li>
                     <li><a href="/new">New products</a></li>
-                    {{!-- <li><a href="/edit">Edit products</a></li> --}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    {{!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> --}}
-                    {{!-- <li><a href="/doLogin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> --}}
                     <li><a href="/logout">Log out</a></li>
                     <li style="font-family:sans-serif; color:#337ab7">
                         {{#if name }}
                         <h4>Welcome {{name}}</h4>
                         {{else}}
-                        <h3>Yeu cau dang nhap</h3>
+                        <h3>Require log in</h3>
                         {{/if}}
                     </li>
                 </ul>
@@ -51,7 +40,7 @@
     <div>
         <nav class="img-responsive">
             <img src="https://img.freepik.com/free-photo/toys-collection-isolated-background_488220-18484.jpg?w=2000"
-                style="width:100%" alt="curry">
+                style="width:100%" alt="toys">
         </nav>
     </div>
 </body>

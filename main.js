@@ -4,7 +4,6 @@ var session = require('express-session')
 var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb+srv://duc:harriS140902@cluster0.aazzgnx.mongodb.net/test'
 
-
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 
@@ -42,6 +41,7 @@ app.post('/newProduct', async (req, res) => {
         res.render('newProduct', { 'nameError': 'Name cannot be less than 5 characters!' })
         return
     }
+    
     let product = {
         'name': name,
         'price': price,
@@ -57,22 +57,6 @@ app.post('/newProduct', async (req, res) => {
     //quay lai trang home
     res.render('index')
 })
-
-// app.get('/edit', async (req, res) => {
-//     const id = req.query.id;
-
-//     const s = await getProductById(id);
-//     res.render("editProduct", { product: s });
-// })
-
-// app.post('/edit', async (req, res) => {
-//     let name = req.body.txtName
-//     let price = req.body.txtPrice
-//     let picture = req.body.txtPicture
-
-//     updateStudent(name, price, picture);
-//     res.redirect("/");
-// })
 
 app.get('/viewAll', async (req, res) => {
     //1. ket noi den server co dia chi trong url
@@ -163,4 +147,3 @@ app.get('/back',(req,res)=>{
 const PORT = process.env.PORT || 3000
 app.listen(PORT)
 console.log('Server is running')
-
