@@ -48,13 +48,9 @@ app.post('/newProduct', async (req, res) => {
         'picture': picture,
         'description': description
     }
-    //1. ket noi den server co dia chi trong url
     let server = await MongoClient.connect(url)
-    //truy cap Database ATNToys
     let dbo = server.db("ATNToysShop")
-    //insert product
     await dbo.collection("product").insertOne(product)
-    //quay lai trang home
     res.render('index')
 })
 
@@ -71,12 +67,8 @@ app.get('/viewAll', async (req, res) => {
 app.post('/search', async (req, res) => {
     let name = req.body.txtName
 
-    //1. ket noi den server co dia chi trong url
     let server = await MongoClient.connect(url)
-    //truy cap Database ATNToys
     let dbo = server.db("ATNToysShop")
-    //get data
-    // new RegExp: Tim tu gan dung; i: khong phan biet chu in hoa
     let products = await dbo.collection('product').find({ 'name': new RegExp(name, 'i') }).toArray()
     res.render('allProduct', { 'products': products })
 })
@@ -91,7 +83,7 @@ app.post('/login', async (req, res) => {
     let pass = req.body.txtPass
     req.session.userName = name
     req.session.passWord = pass
-    if (name.length <= 2) {
+    if (name.length <= 5) {
         res.render('login', { 'nameError': 'Name cannot be less than 5 characters!' })
         return
     }
@@ -101,7 +93,6 @@ app.post('/login', async (req, res) => {
     if (result.length > 0) {
         res.redirect('/')
     } else {
-        // res.render('wrongaccount')
         res.write('Wrong username or password')
         res.end()
     }
