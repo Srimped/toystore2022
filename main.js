@@ -41,7 +41,7 @@ app.post('/newProduct', async (req, res) => {
         res.render('newProduct', { 'nameError': 'Name cannot be less than 5 characters!' })
         return
     }
-    
+
     let product = {
         'name': name,
         'price': price,
