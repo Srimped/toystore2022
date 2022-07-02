@@ -2,9 +2,15 @@ var express = require('express')
 var app = express()
 var session = require('express-session')
 var MongoClient = require('mongodb').MongoClient
-var url = 'mongodb+srv://duc:harriS140902@cluster0.aazzgnx.mongodb.net/test'
+var url = 'mongodb+srv://Vinh:123@firstcloud.6ae48.mongodb.net/test'
 
 app.set('view engine', 'hbs')
+
+app.use(session({
+    secret: '##%@#$^^&**(###GHH##@D',
+    resave: false,
+    saveUninitialized: true
+}))
 app.use(express.urlencoded({ extended: true }))
 
 function isAuthenticated(req, res, next) {
@@ -14,11 +20,6 @@ function isAuthenticated(req, res, next) {
     else
         next()
 }
-
-app.use(session({
-    secret: 'my secret *&(^(%%#^@(!)!@@',
-    resave: false
-}))
 
 app.get('/', isAuthenticated, (req, res) => {
     let accessCount = req.session.accessCount || 0
@@ -46,7 +47,7 @@ app.post('/newProduct', async (req, res) => {
         'name': name,
         'price': price,
         'picture': picture,
-        'description': description
+        'description': description,
     }
     let server = await MongoClient.connect(url)
     let dbo = server.db("ATNToysShop")
@@ -65,7 +66,7 @@ app.get('/viewAll', async (req, res) => {
 })
 
 app.post('/search', async (req, res) => {
-    let name = req.body.txtName
+    let name = req.body.txtSearch
 
     let server = await MongoClient.connect(url)
     let dbo = server.db("ATNToysShop")
@@ -135,6 +136,6 @@ app.get('/back',(req,res)=>{
     })
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 app.listen(PORT)
-console.log('Server is running')
+console.log('Server is running!!!')

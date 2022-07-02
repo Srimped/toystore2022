@@ -7,9 +7,92 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>New Products</title>
+    <title>ATN Toys || New Product</title>
 </head>
 <body>
+
+    <style>
+        .nav-link {
+            flex: 1;
+            text-align: right;
+            letter-spacing: 50px;
+        }
+
+        nav {
+            background: #dbaf96;
+            display: flex;
+            padding: 0% 6%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-link ul li {
+            color: white;
+            list-style: none;
+            display: inline-block;
+            padding: 8px 20px;
+            position: relative;
+        }
+
+        .nav-link ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 25px;
+            letter-spacing: 0px;
+        }
+
+        .nav-link ul li a::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: white;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        .nav-link ul li a:hover::after {
+            width: 100%
+        }
+
+        .nav-link ul input {
+            padding: 20px 10px;
+            width: 10%;
+            height: 40px;
+            border-radius: 40px;
+        }
+
+        .nav-link ul input[type=text] {
+            transition: width 0.4s ease-in-out;
+        }
+
+        .nav-link ul input[type=text]:focus {
+            width: 30%;
+        }
+    </style>
+
+    <nav>
+        <a href="/" style="font-size: 40px;">ATNToys</a>
+        <div class="nav-link" id="navlink">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/viewAll">PRODUCT</a></li>
+                <li><a href="/new">ADD TOY</a></li>
+                <li><a href="">CONTACT</a></li>
+                <form action="/search" method="post" style="display: inline-block">
+                    <input class="search_bar" placeholder="Search Product..." type="text"
+                        style="width: 200px; padding-right: 20px; padding-left: 20px" name="txtSearch">
+                </form>
+                <li><a href="/logout">LOGOUT</a></li>
+                <li><a>
+                    {{#if name }}
+                    <h4>WELCOME {{name}}</h4>
+                    {{/if}}
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
     <h1>New product</h1>
     <form action="/newProduct" method="post">
@@ -20,7 +103,7 @@
                 {{nameError}}
             </div>
         </div>
-
+        <br>
         <div class="price">
             <label for="price">Price:</label>
             <input type="text" class="form-control" id="price" placeholder="Enter price" name="txtPrice">
@@ -28,20 +111,22 @@
                 {{nameError}}
             </div>
         </div>
-
+        <br>
         <div class="picture">
             <label for="picture">Picture:</label>
             <input type="text" class="form-control" id="picture" placeholder="Enter URL" name="txtPicture">
         </div>
-
+        <br>
+        <div class="weight">
+            <label for="weight">weight:</label>
+            <input type="text" class="form-control" id="description" placeholder="Enter description" name="txtWeight">
+        </div>
+        <br>
         <div class="description">
             <label for="description">Description:</label>
-            <input type="text" class="form-control" id="description" placeholder="Enter description" name="txtDescription">
+            <textarea type="text" rows="10" class="form-control" id="description" placeholder="Enter description" name="txtDescription"></textarea>
         </div>
-
-        <div class="checkbox">
-            <label><input type="checkbox" name="remember"> Remember me</label>
-        </div>
+        <br><br>
 
         <button type="button" class="btn btn-success" onclick="history.back();">Back</button>
         <button type="submit" class="btn btn-danger">Create new</button>
